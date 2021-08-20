@@ -94,6 +94,11 @@ class MainActivity : AppCompatActivity() {
                 startActivity(it)
             }
         }
+        btnGoToBottomNavigation.setOnClickListener {
+            Intent(this, NavigationActivity::class.java).also{
+                startActivity(it)
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

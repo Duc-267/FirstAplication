@@ -99,5 +99,13 @@
         app:layout_constraintBottom_toTopOf="@+id/btnToDo"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/btnGoToBottomNavigation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Btm Navi"
+        app:layout_constraintBottom_toTopOf="@+id/btnGoToFragment"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
