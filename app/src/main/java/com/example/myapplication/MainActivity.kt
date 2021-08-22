@@ -99,6 +99,11 @@ class MainActivity : AppCompatActivity() {
                 startActivity(it)
             }
         }
+        btnGoToViewPager.setOnClickListener{
+            Intent(this, ViewPager::class.java).also{
+                startActivity(it)
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

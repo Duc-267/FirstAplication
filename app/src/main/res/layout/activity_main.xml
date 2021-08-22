@@ -13,7 +13,7 @@
         android:id="@+id/btnDialog3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dialog 3"
+        android:text="@string/dialog_3"
         app:layout_constraintBottom_toTopOf="@+id/btnDialog2"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -21,7 +21,7 @@
         android:id="@+id/etFName"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:hint=" Full Name"
+        android:hint="@string/full_name"
         android:textSize="23sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -106,6 +106,15 @@
         android:text="Btm Navi"
         app:layout_constraintBottom_toTopOf="@+id/btnGoToFragment"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnGoToViewPager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Pager"
+        app:layout_constraintBottom_toTopOf="@+id/btnGoToBottomNavigation"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
