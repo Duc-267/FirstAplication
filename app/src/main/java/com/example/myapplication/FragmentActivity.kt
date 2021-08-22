@@ -1,7 +1,6 @@
 package com.example.myapplication
 
-import FirstFragment
-import SecondFragment
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_fragment.*
@@ -17,7 +16,6 @@ class FragmentActivity : AppCompatActivity() {
 
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragment, firstFragment)
-            addToBackStack(null)
             commit()
         }
 
