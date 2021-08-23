@@ -3,10 +3,13 @@ package com.example.myapplication
 import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.CheckBox
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_to_do_list.*
+import kotlinx.android.synthetic.main.example_todo.*
 
 class ToDoList : AppCompatActivity(), ToDoAdapter.onItemClickListener {
     private val dumpList = mutableListOf<item>()
@@ -34,19 +37,17 @@ class ToDoList : AppCompatActivity(), ToDoAdapter.onItemClickListener {
     }
 
     override fun onItemClick(position: Int) {
-
         val deleteDialog = AlertDialog.Builder(this)
             .setTitle("Delete")
             .setMessage("Do you want to delete this activity?")
-            .setPositiveButton("Yes"){ _: DialogInterface, _: Int ->
+            .setPositiveButton("Yes") { _: DialogInterface, _: Int ->
                 removeItem(position)
                 Toast.makeText(this, "You deleted activity", Toast.LENGTH_SHORT).show()
             }
-            .setNegativeButton("No"){ _: DialogInterface, _: Int ->
+            .setNegativeButton("No") { _: DialogInterface, _: Int ->
 
             }.create()
         deleteDialog.show()
-
     }
 
     private fun removeItem(position: Int){

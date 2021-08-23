@@ -28,14 +28,14 @@ class ToDoAdapter (private var toDoList: List<item>,
         var tittle = itemView.tvText
         var isDone = itemView.cbDone
         init {
-            if(R.id.cbDone is)
             itemView.cbDone.setOnClickListener(this)
         }
-
         override fun onClick(v: View?) {
             val position = absoluteAdapterPosition
-            if (position != Adapter.NO_SELECTION) {
-                listener.onItemClick(position)
+            if(isDone.isChecked) {
+                if (position != Adapter.NO_SELECTION) {
+                    listener.onItemClick(position)
+                }
             }
         }
 
