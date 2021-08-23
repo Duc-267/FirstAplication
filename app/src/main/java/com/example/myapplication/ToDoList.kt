@@ -34,6 +34,7 @@ class ToDoList : AppCompatActivity(), ToDoAdapter.onItemClickListener {
     }
 
     override fun onItemClick(position: Int) {
+
         val deleteDialog = AlertDialog.Builder(this)
             .setTitle("Delete")
             .setMessage("Do you want to delete this activity?")

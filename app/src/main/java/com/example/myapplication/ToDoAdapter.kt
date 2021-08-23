@@ -28,6 +28,7 @@ class ToDoAdapter (private var toDoList: List<item>,
         var tittle = itemView.tvText
         var isDone = itemView.cbDone
         init {
+            if(R.id.cbDone is)
             itemView.cbDone.setOnClickListener(this)
         }
 

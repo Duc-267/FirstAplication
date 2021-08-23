@@ -69,7 +69,7 @@ class SecondActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item?.itemId){
             R.id.miSetting -> {
                 Toast.makeText(this, "Hello", Toast.LENGTH_LONG).show()

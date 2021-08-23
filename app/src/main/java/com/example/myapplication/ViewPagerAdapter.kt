@@ -10,7 +10,7 @@ class ViewPagerAdapter(
     val textList: List<String>
 ):RecyclerView.Adapter<ViewPagerAdapter.viewPagerHolder>(){
     inner class viewPagerHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
-        var text = itemView.tvViewPagerText.text.toString()
+        var textView = itemView.tvViewPagerText
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewPagerHolder {
@@ -20,7 +20,7 @@ class ViewPagerAdapter(
 
     override fun onBindViewHolder(holder: viewPagerHolder, position: Int) {
         val current = textList[position]
-        holder.text = current
+        holder.textView.text = current
     }
 
     override fun getItemCount() = textList.size
