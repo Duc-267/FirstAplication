@@ -12,10 +12,12 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.app.ActivityCompat
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    lateinit var toggle: ActionBarDrawerToggle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -104,7 +106,28 @@ class MainActivity : AppCompatActivity() {
                 startActivity(it)
             }
         }
+        toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        navView.setNavigationItemSelectedListener {
+            when (it.itemId){
+                R.id.navItem1 ->{
+                    Toast.makeText(this, "Item 1", Toast.LENGTH_SHORT).show()
+                }
+                R.id.navItem2 ->{
+                    Toast.makeText(this, "Item 2", Toast.LENGTH_SHORT).show()
+                }
+                R.id.navItem3 ->{
+                    Toast.makeText(this, "Item 3", Toast.LENGTH_SHORT).show()
+                }
+            }
+            true
+
+        }
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
@@ -122,6 +145,9 @@ class MainActivity : AppCompatActivity() {
 //        return true
 //    }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(toggle.onOptionsItemSelected(item)){
+            return true
+        }
         // Handle item selection
         return when (item.itemId) {
             R.id.miAddContact -> {
@@ -140,6 +166,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Setting on", Toast.LENGTH_SHORT).show()
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
