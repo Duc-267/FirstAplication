@@ -19,5 +19,8 @@ class ViewPager : AppCompatActivity() {
         )
         val adapter = ViewPagerAdapter(textList)
         viewPager.adapter = adapter
+        viewPager.beginFakeDrag()
+        viewPager.fakeDragBy(-10f)
+        viewPager.endFakeDrag()
     }
 }
