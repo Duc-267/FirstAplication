@@ -26,7 +26,7 @@ class ViewPager : AppCompatActivity() {
         viewPager.endFakeDrag()
         TabLayoutMediator(tabLayout, viewPager){ tab: TabLayout.Tab, i: Int ->
             tab.text = "Tab ${i + 1}"
-        }
+        }.attach()
 
 
     }
