@@ -2,6 +2,8 @@ package com.example.myapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_view_pager.*
 
 class ViewPager : AppCompatActivity() {
@@ -22,5 +24,10 @@ class ViewPager : AppCompatActivity() {
         viewPager.beginFakeDrag()
         viewPager.fakeDragBy(-10f)
         viewPager.endFakeDrag()
+        TabLayoutMediator(tabLayout, viewPager){ tab: TabLayout.Tab, i: Int ->
+            tab.text = "Tab ${i + 1}"
+        }
+
+
     }
 }
