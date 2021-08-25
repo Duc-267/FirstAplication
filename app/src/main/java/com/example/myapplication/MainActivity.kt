@@ -1,10 +1,12 @@
 package com.example.myapplication
 
 import android.Manifest
-import android.app.AlertDialog
+import android.app.*
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,13 +16,33 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    val CHANNEL_ID = "channelID"
+    val CHANNEL_NAME = "channelName"
+    val NOTIFICATION_ID = 0
     lateinit var toggle: ActionBarDrawerToggle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        createNotificationChannel()
+
+        val intent = Intent(this, MainActivity::class.java)
+        val pendingIntent = TaskStackBuilder.create(this).run {
+            addNextIntentWithParentStack(intent)
+            getPendingIntent()
+        }
+
+        val notification = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setContentTitle("Notification")
+            .setContentText("Test Notification")
+            .setSmallIcon(R.drawable.ic_home_foreground)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .build()
+        val notificationManager = NotificationManagerCompat.from(this)
         btnGoToSecond.setOnClickListener {
             requestPermission()
             val name = etFName.text.toString()
@@ -33,6 +55,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(it)
             }
             Toast.makeText(this, "submitted", Toast.LENGTH_SHORT).show()
+            notificationManager.notify(NOTIFICATION_ID, notification)
         }
         val addContactDialog = AlertDialog.Builder(this)
             .setTitle("Add Contact")
@@ -124,8 +147,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             true
-
         }
+
     }
 
 
@@ -205,5 +228,16 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+    fun createNotificationChannel(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val channel = NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH).apply {
+                lightColor = Color.GRAY
+                enableLights(true)
+            }
+            val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            manager.createNotificationChannel(channel)
+        }
+
     }
 }
