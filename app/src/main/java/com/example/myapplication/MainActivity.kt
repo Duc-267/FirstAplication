@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         val pendingIntent = TaskStackBuilder.create(this).run {
             addNextIntentWithParentStack(intent)
-            getPendingIntent()
+            getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
         }
 
         val notification = NotificationCompat.Builder(this, CHANNEL_ID)
@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
             .setContentText("Test Notification")
             .setSmallIcon(R.drawable.ic_home_foreground)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setContentIntent(pendingIntent)
             .build()
         val notificationManager = NotificationManagerCompat.from(this)
         btnGoToSecond.setOnClickListener {
